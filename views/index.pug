@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title supporter
+        link(rel="stylesheet" type="text/css" href="./index.css")
+    body
+        h1 Tạo file thống kê đơn giá nhanh
+        hr
+        h3 Đơn giá hiện tại
+        br
+        table
+            thead
+                tr
+                    th Fabric Code
+                    th Color
+                    th Price
+            tbody
+                each unit in units
+                    tr
+                        td=unit.fabricCode
+                        td=unit.color
+                        td=unit.price
+        i nếu muốn cập nhật đơn giá mới vui lòng tải file lên 
+        br
+        form(action="/update" method="post" enctype="multipart/form-data")
+            label file đơn gía 
+            input(type="file" name="unit")
+            button Cập nhật
+        br
+        hr
+        div
+            label file đơn hàng
+            input(type="file" id="root" required)
+            button#send-file submit
+        #files
+        script(src="https://unpkg.com/axios/dist/axios.min.js")
+        //if gt IE 9
+        | [if gt IE 9]
+        script(type='text/javascript', src='//unpkg.com/xlsx/dist/shim.min.js')
+        script(type='text/javascript', src='//unpkg.com/xlsx/dist/xlsx.full.min.js')
+        script(type='text/javascript', src='//unpkg.com/blob.js@1.0.1/Blob.js')
+        script(type='text/javascript', src='//unpkg.com/file-saver@1.3.3/FileSaver.js')
+        // [endif]
+        script(src="/index.js")
